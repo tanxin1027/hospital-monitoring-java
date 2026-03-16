@@ -13,6 +13,7 @@ system:
     memory: true
     disk: true
     network: true
+    load: true
 
 tomcat:
   metrics:

@@ -23,6 +23,7 @@
     <properties>
         <java.version>17</java.version>
         <oshi.version>6.4.10</oshi.version>
+        <mysql.connector.version>8.0.33</mysql.connector.version>
     </properties>
     
     <dependencies>
@@ -45,7 +46,14 @@
             <version>${oshi.version}</version>
         </dependency>
         
-        <!-- JMX for Tomcat metrics (to be added later) -->
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
+        
+        <!-- JMX API for Tomcat monitoring -->
         <dependency>
             <groupId>javax.management</groupId>
             <artifactId>jmxremote</artifactId>
