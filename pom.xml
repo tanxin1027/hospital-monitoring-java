@@ -8,10 +8,15 @@
     <groupId>com.hospital</groupId>
     <artifactId>hospital-monitoring-java</artifactId>
     <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     
-    <name>Hospital Monitoring Java Agent</name>
-    <description>Monitoring agent for hospital system metrics collection</description>
+    <name>Hospital Monitoring Java</name>
+    <description>Parent project for hospital monitoring system</description>
+    
+    <modules>
+        <module>hospital-monitoring-server</module>
+        <module>hospital-monitoring-agent</module>
+    </modules>
     
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -26,49 +31,21 @@
         <mysql.connector.version>8.0.33</mysql.connector.version>
     </properties>
     
-    <dependencies>
-        <!-- Spring Boot Starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        
-        <!-- Web Starter for REST client -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        
-        <!-- OSHI for system metrics -->
-        <dependency>
-            <groupId>com.github.oshi</groupId>
-            <artifactId>oshi-core</artifactId>
-            <version>${oshi.version}</version>
-        </dependency>
-        
-        <!-- MySQL Connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.connector.version}</version>
-        </dependency>
-        
-        <!-- JMX API for Tomcat monitoring -->
-        <dependency>
-            <groupId>javax.management</groupId>
-            <artifactId>jmxremote</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${java.home}/lib/jmxremote.jar</systemPath>
-        </dependency>
-    </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <!-- OSHI for system metrics -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
+            
+            <!-- MySQL Connector -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

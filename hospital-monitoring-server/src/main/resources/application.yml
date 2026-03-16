@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+monitoring:
+  server:
+    enabled: true
+    
+# Database configuration can be added here
