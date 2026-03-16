@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医院监控系统 - 仪表板</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            background-color: #343a40;
+            min-height: 100vh;
+            position: fixed;
+        }
+        .sidebar .nav-link {
+            color: #adb5bd;
+            padding: 12px 20px;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            color: white;
+            background-color: #495057;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        .stats-card {
+            transition: transform 0.2s;
+        }
+        .stats-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center p-3 text-white">
+                        <h5>🏥 医院监控系统</h5>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/dashboard">
+                                <span>📊 仪表板</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/metrics">
+                                <span>📈 监控指标</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/users">
+                                <span>👥 用户管理</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-4">
+                            <a class="nav-link" href="/logout">
+                                <span>🚪 退出登录</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">仪表板</h1>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="card-icon">🖥️</span>主机数量</h5>
+                                <p class="card-text display-6">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="card-icon">⚡</span>活跃告警</h5>
+                                <p class="card-text display-6">3</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="card-icon">📈</span>平均CPU使用率</h5>
+                                <p class="card-text display-6">45%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title"><span class="card-icon">💾</span>平均内存使用率</h5>
+                                <p class="card-text display-6">62%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Placeholder -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">系统资源使用趋势</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="resourceChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/webjars/chart.js/dist/chart.umd.js"></script>
+    <script>
+        // Sample chart initialization
+        const ctx = document.getElementById('resourceChart').getContext('2d');
+        const resourceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                datasets: [{
+                    label: 'CPU使用率 (%)',
+                    data: [30, 45, 60, 55, 40, 35],
+                    borderColor: '#667eea',
+                    tension: 0.1
+                }, {
+                    label: '内存使用率 (%)',
+                    data: [50, 65, 70, 68, 62, 58],
+                    borderColor: '#764ba2',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>

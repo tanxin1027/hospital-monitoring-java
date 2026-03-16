@@ -16,6 +16,7 @@
     <modules>
         <module>hospital-monitoring-server</module>
         <module>hospital-monitoring-agent</module>
+        <module>hospital-monitoring-web</module>
     </modules>
     
     <parent>
